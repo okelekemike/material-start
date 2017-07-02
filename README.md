@@ -1,161 +1,121 @@
-# AngularJS Material-Start 
+# Angular Material-Start (ES6)
 
-This Material **start*** project is a *seed* for AngularJS Materal applications. The project contains a sample AngularJS application and is preconfigured to install the Angular framework and a bunch of development and testing tools for instant web development gratification.
+This branch contains the final/complete version (i.e. `step-10-finished`) of the
+[Material Start ES6 Tutorial](https://github.com/angular/material-start/tree/es6-tutorial) branch
+in this repository.
 
-This sample application is skeleton for a typical [AngularJS Material](http://angularjs.org/) web app: comprised of a Side navigation area and a content area. You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
+This project uses the latest master branch of Angular Material to build the application outlined
+below.
+
+![material-starter-ux2](https://cloud.githubusercontent.com/assets/6004537/14996543/b588eb46-1137-11e6-803c-ce23996c9742.png)
+
+Above is a snaphot of the Starter-App with a **Master-Detail** layout: showing a list of users
+(left) and a user detail view (right).
+
+Also shown is the user experience that will be displayed for smaller device sizes. The responsive
+layout reveals the **menu** button that can be used to hide the user list. And the **share** button
+can be used to show the Share bottom sheet view.
+
+This Starter app demonstrates how:
+
+*  Angular Material `layout` and `flex` options can easily configure HTML containers
+*  Angular Material components `<md-toolbar>`, `<md-sidenav>`, and `<md-icon>` can quickly provide
+   a base application structure
+*  Custom controllers can be used and show `<md-bottomsheet>` with HTML templates
+*  Custom controller can easily, and programmatically open/close the SideNav component
+*  Responsive breakpoints and `$mdMedia` are used
+*  Theming can be altered/configured using `$mdThemingProvider`
+
+
+This sample application is purposed as both a learning tool and a skeleton application for a typical
+[AngularJS Material](http://angularjs.org/) web app, comprised of a side navigation area and a
+content area. You can use it to quickly bootstrap your angular webapp projects and dev environment
+for these projects.
+
+- - -
+
+#### "How to build an App"
+
+Here are some generalized steps that may be used to conceptualize the application implementation
+process:
+
+1. Plan your layout and the components you want to use
+
+2. Use hard-coded HTML and mock content to make sure the components appear as desired
+
+3. Wire components to your application logic
+
+   > Use the seamless integration possible with Angular directives and controllers.<br/>
+   > This integration assumes that you have unit tested your application logic.
+
+4. Add Responsive breakpoints
+
+5. Add Theming support
+
+6. Confirm ARIA compliance
+
+7. Write End-to-end (e2e) Tests
+
+   > It is important to validate your application logic with Angular Material UI components.
+
+###### Wirefame
+
+The illustration below shows how we planned the layout and identified the primary components that
+will be used in the Starter app:
+
 <br/>
+![plancomponents2](https://cloud.githubusercontent.com/assets/210413/6444676/c247c8f8-c0c4-11e4-8206-208f55cbceee.png)
 
-![Starter app](https://cloud.githubusercontent.com/assets/1045233/5948446/a6c3594c-a6f9-11e4-9d68-4d7d9a3196a2.png)
+> **Note:** The container #2 (above) is a simple `<div>` container and not an Angular Material
+  component.
 
-<br/>
-> The start app doesn't do much... it just demonstrates how to override a theme and how to use the side navigation component. Try shrinking the window size and watch the sideNav auto-hide. You can temporarily show the sideNav by clicking on the upper left menu button.
+- - -
 
-## Getting Started
+##### Getting Started
 
-To get you started you can simply clone the material-start repository and install the dependencies:
+This project uses [jspm.io](http://jspm.io), a package manager for SystemJS which is built on top
+of the dynamic ES6 module loader. This allows developers to load any module format (ES6, CommonJS,
+AMD, and globals).
 
-### Prerequisites
+###### Prerequisites
 
-You need git to clone the material-start repository. You can get git from
-[http://git-scm.com/](http://git-scm.com/).
+This project assumes that you have NodeJS and any relevant development tools (like XCode) already
+installed.
+ 
+###### Getting Started
 
-We also use a number of node.js tools to initialize and test angular-seed. You must have node.js and
-its package manager (npm) installed.  You can get them from [http://nodejs.org/](http://nodejs.org/).
+Clone this repository and execute the following commands in a terminal:
 
-### Clone material-start
+* `git checkout es6`
+* `npm install jspm live-server -g`
+* `jspm update`
+* `live-server --open=app`
 
-Clone the angular-seed repository using [git][git]:
+> **Note:** You should use a web-server (like live-server above) to view your app in the browser. Open
+  the dev console to see any warnings and browse the elements.
 
-```
-git clone https://github.com/angular/material-start.git
-cd material-start
-```
+###### Layout
 
-If you just want to start a new project without the material-start commit history then you can do:
+You will notice a few files/directories within this project:
 
-```bash
-git clone --depth=1 https://github.com/angular/material-start.git <your-project-name>
-```
+ 1. `app/src` - This is where all of your application files are stored.
+ 2. `app/assets` - This folder contains some tutorial-provided images and icons which are used by
+    the application.
+ 3. `index.html` - The entry point to your application. This uses System.js to load the
+    `app/src/boot/boot.js` bootstrap file which in turn loads the `app/src/app.js` file that imports
+     all of your dependencies and declares them as Angular modules, and configures the icons and
+     theming for the application.
 
-The `depth=1` tells git to only pull down one commit worth of historical data.
+#### Troubleshooting
 
-### Install Dependencies
+If you have issues getting the application to run or work as expected:
 
-We have two kinds of dependencies in this project: tools and angular framework code.  The tools help
-us manage and test the application.
-
-* We get the tools we depend upon via `npm`, the [node package manager][npm].
-* We get the angular code via `bower`, a [client-side code package manager][bower].
-
-We have preconfigured `npm` to automatically run `bower` so we can simply do:
-
-```
-npm install
-```
-
-Behind the scenes this will also call `bower install`.  You should find that you have two new
-folders in your project.
-
-* `node_modules` - contains the npm packages for the tools we need
-* `app/bower_components` - contains the angular framework files
-
-*Note that the `bower_components` folder would normally be installed in the root folder but
-angular-seed changes this location through the `.bowerrc` file.  Putting it in the app folder makes
-it easier to serve the files by a webserver.*
-
-## Directory Layout
-
-```
-app/                    --> all of the source files for the application
-  app.css               --> default stylesheet
-  src/           --> all app specific modules
-     avatars/              --> package for avatar features
-      avatarService.js           --> angular service used to simulate remote dataservices for avatars.
-  app.js                --> main application module
-  index.html            --> app layout file (the main html template file of the app)
-karma.conf.js         --> config file for running unit tests with Karma
-e2e-tests/            --> end-to-end tests
-  protractor-conf.js    --> Protractor config file
-  scenarios.js          --> end-to-end scenarios to be run by Protractor
-```
-
-## Updating Angular
-
-Previously we recommended that you merge in changes to angular-seed into your own fork of the project.
-Now that the angular framework library code and tools are acquired through package managers (npm and
-bower) you can use these tools instead to update the dependencies.
-
-You can update the tool dependencies by running:
-
-```
-npm update
-```
-
-This will find the latest versions that match the version ranges specified in the `package.json` file.
-
-You can update the Angular dependencies by running:
-
-```
-bower update
-```
-
-This will find the latest versions that match the version ranges specified in the `bower.json` file.
-
-
-## Serving the Application Files
-
-While angular is client-side-only technology and it's possible to create angular webapps that
-don't require a backend server at all, we recommend serving the project files using a local
-webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
-sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
-etc to function properly when an html page is opened via `file://` scheme instead of `http://`.
-
-### Running the App during Development
-
-The angular-seed project comes preconfigured with a local development webserver.  It is a node.js
-tool called [http-server][http-server].  You can install http-server globally:
-
-```
-sudo npm install -g http-server
-```
-
-Then you can start your own development web server to serve static files from a folder by running:
-
-```
-cd app
-http-server -a localhost -p 8000
-```
-
-Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
-configure your server to serve the files under the `app/` directory.
-
-
-### Running the App in Production
-
-This really depends on how complex your app is and the overall infrastructure of your system, but
-the general rule is that all you need in production are all the files under the `app/` directory.
-Everything else should be omitted.
-
-Angular apps are really just a bunch of static html, css and js files that just need to be hosted
-somewhere they can be accessed by browsers.
-
-If your Angular app is talking to the backend server via xhr or other means, you need to figure
-out what is the best way to host the static files to comply with the same origin policy if
-applicable. Usually this is done by hosting the files by the backend server or through
-reverse-proxying the backend server(s) and webserver(s).
-
-## Contact
-
-For more information on AngularJS please check out http://angularjs.org/
-For more information on Angular Material, check out https://material.angularjs.org/
-
-[git]: http://git-scm.com/
-[bower]: http://bower.io
-[npm]: https://www.npmjs.org/
-[node]: http://nodejs.org
-[protractor]: https://github.com/angular/protractor
-[jasmine]: http://jasmine.github.io
-[karma]: http://karma-runner.github.io
-[travis]: https://travis-ci.org/
-[http-server]: https://github.com/nodeapps/http-server
+1. Make sure you have installed JSPM and run the `jspm update` command.
+2. Reach out on our [Forum](https://groups.google.com/forum/#!forum/ngmaterial) to see if any other
+   developers have had the same issue.
+3. This project is based against the `master` branch of Angular Material, so it is always showing
+   the latest and greatest. You may want to update the `package.json` to use Version 1.1.0 or
+   another stable release to make sure it isn't because of something we changed recently.
+4. Search for the issue here on [GitHub](https://github.com/angular/material-start/issues?q=is%3Aissue+is%3Aopen).
+5. If you don't see an existing issue, please open a new one with the relevant information and the
+   details of the problem you are facing.
